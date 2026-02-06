@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Beautiful Wife</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+    <section class="scene intro">
+        <div class="content">
+            <h1 class="reveal-text">Today is for You...</h1>
+            <p class="scroll-hint">Scroll down slowly, Jaan</p>
+        </div>
+    </section>
+
+    <section class="scene message">
+        <div class="content">
+            <h2>Every Rose has its beauty...</h2>
+            <p>But none of them compare to the light you bring into my life.</p>
+        </div>
+    </section>
+
+    <section class="scene photo-scene">
+        <div class="content">
+            <div class="photo-frame">
+                <img src="us.jpg" alt="Our Memory">
+            </div>
+            <p>My favorite flower in the world.</p>
+        </div>
+    </section>
+
+    <section class="scene final">
+        <div class="content">
+            <div class="big-rose" onclick="startSurprise()">🌹</div>
+            <h1 class="gold-text">Happy Rose Day!</h1>
+            <button id="giftBtn" onclick="startSurprise()">Click to Open My Heart</button>
+            <div id="hiddenNote" class="hidden">
+                <p>I am so lucky to call you my wife. Let's make this year bloom with love.</p>
+                <p class="signature">- Your Zohaib</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
