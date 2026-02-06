@@ -3,48 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Beautiful Wife</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <title>Happy Rose Day | My Wife</title>
+    <style>
+        /* CSS STYLING */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #1a0000 0%, #000000 100%);
+            color: white;
+            font-family: 'Times New Roman', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+        }
+
+        h1 {
+            color: #D4AF37; /* Gold color */
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .rose-icon {
+            font-size: 100px;
+            margin: 20px 0;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px #ff0000); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px #ff0000); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 5px #ff0000); }
+        }
+
+        button {
+            background: linear-gradient(45deg, #8b0000, #ff4d4d);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.5);
+        }
+
+        .message-area {
+            display: none;
+            margin-top: 25px;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .petal {
+            position: fixed;
+            top: -10%;
+            user-select: none;
+            pointer-events: none;
+            z-index: 999;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <audio id="bgMusic" src="music.mp3" loop></audio>
 
-    <section class="scene intro">
-        <div class="content">
-            <h1 class="reveal-text">Today is for You...</h1>
-            <p class="scroll-hint">Scroll down slowly, Jaan</p>
+    <div class="glass-card">
+        <h1>Happy Rose Day</h1>
+        <div class="rose-icon">🌹</div>
+        <p style="font-style: italic; color: #ccc;">To my beautiful wife...</p>
+        
+        <button id="mainBtn" onclick="showSurprise()">Click for Your Surprise</button>
+
+        <div id="message" class="message-area">
+            <p>You are the most beautiful flower in my life's garden.</p>
+            <p><strong>I love you more than words can say!</strong></p>
+            <p style="color: #D4AF37; font-size: 0.9rem;">- Your Zohaib</p>
         </div>
-    </section>
+    </div>
 
-    <section class="scene message">
-        <div class="content">
-            <h2>Every Rose has its beauty...</h2>
-            <p>But none of them compare to the light you bring into my life.</p>
-        </div>
-    </section>
+    <script>
+        /* JAVASCRIPT LOGIC */
+        function showSurprise() {
+            // Hide button, show message
+            document.getElementById('mainBtn').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
 
-    <section class="scene photo-scene">
-        <div class="content">
-            <div class="photo-frame">
-                <img src="us.jpg" alt="Our Memory">
-            </div>
-            <p>My favorite flower in the world.</p>
-        </div>
-    </section>
+            // Start falling petals
+            setInterval(createPetal, 200);
+        }
 
-    <section class="scene final">
-        <div class="content">
-            <div class="big-rose" onclick="startSurprise()">🌹</div>
-            <h1 class="gold-text">Happy Rose Day!</h1>
-            <button id="giftBtn" onclick="startSurprise()">Click to Open My Heart</button>
-            <div id="hiddenNote" class="hidden">
-                <p>I am so lucky to call you my wife. Let's make this year bloom with love.</p>
-                <p class="signature">- Your Zohaib</p>
-            </div>
-        </div>
-    </section>
+        function createPetal() {
+            const petal = document.createElement('div');
+            const icons = ['🌹', '🌸', '❤️', '✨'];
+            petal.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            petal.className = 'petal';
+            
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            petal.style.opacity = Math.random();
 
-    <script src="script.js"></script>
+            document.body.appendChild(petal);
+
+            // Clean up petals so the web doesn't get slow
+            setTimeout(() => {
+                petal.remove();
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
